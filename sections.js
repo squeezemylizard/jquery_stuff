@@ -70,21 +70,21 @@ $(document).ready(
  
             remove_section(section_id);
             
-            var next_section = ++id;
+            var next_section = ++id; /* at this point we want to update all the following sections from the one just deleted */
             console.log('updating section' + (next_section));
              for (i = next_section; i <= num_sections+1; i++) {
                 console.log('updating section' + i);
                 
                 console.log(`changing : #Container_Section_${i}`);
-                $(`#Container_Section_${i}`).attr('id', `Container_Section_${i-1}`);
-                $(`#Label_Section_${i}`).attr('id', `Label_Section_${i-1}`);
-                $(`#Label_Section_${i-1}`).text(`Section #${i-1}:`);
-                $(`#Btn_Delete_Container_Section_${i}`).attr('id',`Btn_Delete_Container_Section_${i-1}`);
+                $(`#Container_Section_${i}`).attr('id', `Container_Section_${i-1}`);  /*we update the next container's id to the one previous */
+                $(`#Label_Section_${i}`).attr('id', `Label_Section_${i-1}`);          /* ditto with the label's id */
+                $(`#Label_Section_${i-1}`).text(`Section #${i-1}:`);                  /*update the label of the id to match the current section */  
+                $(`#Btn_Delete_Container_Section_${i}`).attr('id',`Btn_Delete_Container_Section_${i-1}`); /*update the btn delete id to the new section id */
 
             }
            
-            $("#add_section").addClass('enabled'); 
-            $('#max_sections').remove();  
+            $("#add_section").addClass('enabled'); /* since we've now deleted one section the add section element is now operational - note, this should probably be an if statement? */
+            $('#max_sections').remove();  /* again, this removes the warning max sections have exceeded and should probably check first */
             
             if (!add_sections_enabled){
                 console.log('renenabling click event handler')

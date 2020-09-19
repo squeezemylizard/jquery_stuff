@@ -1,4 +1,4 @@
- 
+/* I've just hacked this together using my limited knowledge of JQuery, but I'm sure there are better ways to do this */ 
 $(document).ready(
     function() {
         var sections =     $("#Sections");                   /* return group element of sections */
